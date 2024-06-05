@@ -1,54 +1,44 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
-import {fontAwesome, AntDesign}from "@expo/vector-icons"
+import { View, Text, Image, FlatList } from "react-native";
+import React from "react";
+import { fontAwesome, AntDesign } from "@expo/vector-icons";
+import { categoriesData } from "./mockdata/category.data.js";
 
 const App = () => {
+  const height = 200;
+  const width = 200;
+  console.log(categoriesData);
+  console.log("Is Working ");
   return (
-    <View style={{flex:1 , padding: 35, backgroundColor: "white", gap: 20}}>
-      <View>
-          <Image 
-            source={require("./assets/myImages/image.png")}
-            style={{width:150, height: 140, justifyContent:"center"}}/>
-      </View>
-      <View style={{display: "flex", flexDirection: "row", gap: 10, justifyContent: "center"}}>
-        <View>
-
-          <View style = {{backgroundColor: "blue", height: 200, width: 175}}>
-            <Text>
-              Hello Theo
-            </Text>
-
-          </View>
-          
-        </View>
-
-        <View style = {{backgroundColor: "gold", height: 200, width: 175 }}>
-          <Text>Hello Eben</Text>
-        </View>
-      </View>
-<View>
-  
-</View>
-      <View style={{display: "flex", flexDirection: "row", gap: 10, justifyContent: "center"}}>
-        <View>
-
-          <View style = {{backgroundColor: "green", height: 200, width: 175}}>
-            <Text>
-              Hello Theo
-            </Text>
-
-          </View>
-          
-        </View>
-
-        <View style = {{backgroundColor: "brown", height: 200, width: 175 }}>
-          <Text>Hello Eben</Text>
-        </View>
-      </View>
+    <View
+      style={{ flex: 1, marginTop: 50, padding: 10, backgroundColor: "#FAFA" }}
+    >
+      <FlatList
+        data={categoriesData}
+        renderItem={(category) => {
+          return (
+            <View
+              style={{
+                backgroundColor: "orange",
+                borderRadius: 20,
+                width: 155,
+                height: 167,
+                marginLeft: 10,
+                marginBottom: 10,
+                marginRight: 10,
+                justifyContent:"centre",
+                alignItems:"centre"
+              }}
+            >
+              <Image source={category.item.image} />
+            </View>
+          );
+        }}
+        keyExtractor={(category) => category.id}
+        numColumns={2}
+        containerStyle={{ gap: 20 }}
+      />
     </View>
-  
-    )
-    
-}
+  );
+};
 
-export default App
+export default App;
